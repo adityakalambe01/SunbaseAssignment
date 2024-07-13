@@ -3,6 +3,7 @@ package com.service;
 import com.model.Customer;
 import com.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -59,8 +60,9 @@ public class CustomerService {
     }
 
     //All Customers
-    public List<Customer> getAllCustomers() {
-        return customerRepository.findAll();
+    public List<Customer> getAllCustomers(Integer pageNumber, Integer pageSize) {
+        return   customerRepository.findAll(PageRequest.of(pageNumber, pageSize))
+                .getContent();
     }
 
     //Delete Customer
@@ -71,5 +73,9 @@ public class CustomerService {
         }
 
         return false;
+    }
+
+    public Long getCountOfCustomers() {
+        return customerRepository.count();
     }
 }
