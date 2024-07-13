@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            /* justify-content: center;
+            align-items: center; */
+            height: 100vh;
+            background-color: black;
+            color: white;
+        }
+
+        .customer-list-container {
+            /* background: #ffffff; */
+            padding: 40px 30px;
+            border-radius: 10px;
+            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+            width: 100%;
+            margin-top: 20px;
+
+        }
+
+        .options-row {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .add-customer-button,
+        .sync-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .add-customer-button:hover,
+        .sync-button:hover {
+            background-color: #0056b3;
+        }
+
+        .search-dropdown {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .search-input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 200px;
+        }
+
+        .customer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .customer-table th,
+        .customer-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .customer-table th {
+            background-color: black;
+            color: white;
+        }
+
+        .edit-button,
+        .delete-button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 5px;
+        }
+
+        .edit-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .edit-button:hover {
+            background-color: #218838;
+        }
+
+        .delete-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="customer-list-container">
+        <div class="options-row">
+            <button class="add-customer-button">Add Customer</button>
+            <select class="search-dropdown">
+                <option value="first_name">First Name</option>
+                <option value="last_name">Last Name</option>
+                <option value="city">City</option>
+                <option value="state">State</option>
+            </select>
+            <input type="text" class="search-input" placeholder="Search...">
+            <button class="sync-button">Sync</button>
+        </div>
+
+        <table class="customer-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Street</th>
+                    <th>Address</th>
+                    <th>City</th>
+                    <th>State</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>Elvnu Street</td>
+                    <td>H no 2</td>
+                    <td>Delhi</td>
+                    <td>Delhi</td>
+                    <td>jane.doe@example.com</td>
+                    <td>12345678</td>
+                    <td>
+                        <button class="edit-button">Edit</button>
+                        <button class="delete-button">Delete</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>John</td>
+                    <td>Smith</td>
+                    <td>Main Street</td>
+                    <td>H no 5</td>
+                    <td>Mumbai</td>
+                    <td>Maharashtra</td>
+                    <td>john.smith@example.com</td>
+                    <td>87654321</td>
+                    <td>
+                        <button class="edit-button">Edit</button>
+                        <button class="delete-button">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

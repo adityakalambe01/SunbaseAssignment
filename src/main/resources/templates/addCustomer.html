@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Customer Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f2f5;
+        }
+
+        .customer-form {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+        }
+
+        h3 {
+            margin-bottom: 30px;
+            font-size: 24px;
+            color: #333;
+            text-align: left;
+        }
+
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .column {
+            width: 48%;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-button {
+            display: block;
+            margin-left: auto;
+            padding: 12px 30px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .submit-button:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="customer-form">
+        <h3>Add Customer Details</h3>
+        <div class="form-row">
+            <div class="column">
+                <input type="text" placeholder="First Name" class="input-field">
+                <input type="text" placeholder="Street" class="input-field">
+                <input type="text" placeholder="City" class="input-field">
+                <input type="email" placeholder="Email" class="input-field">
+            </div>
+            <div class="column">
+                <input type="text" placeholder="Last Name" class="input-field">
+                <input type="text" placeholder="Address" class="input-field">
+                <input type="text" placeholder="State" class="input-field">
+                <input type="tel" placeholder="Phone Number" class="input-field">
+            </div>
+        </div>
+        <button class="submit-button">Submit</button>
+    </div>
+
+</body>
+
+</html>
