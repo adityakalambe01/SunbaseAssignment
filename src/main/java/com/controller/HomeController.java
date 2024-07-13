@@ -17,8 +17,11 @@ public class HomeController {
     private CustomerService customerService;
 
     @GetMapping
-    public List<Customer> getAllCustomers() {
-        return this.customerService.getAllCustomers();
+    public List<Customer> getAllCustomers(
+            @RequestParam(value = "page",defaultValue = "0", required = false) Integer pageNumber,
+            @RequestParam(value = "size", defaultValue = "8", required = false) Integer pageSize
+    ) {
+        return this.customerService.getAllCustomers(pageNumber, pageSize);
     }
 
     @GetMapping("/current-user")
@@ -58,7 +61,7 @@ public class HomeController {
         String[] city = new String[]{"City 1", "City 2", "City 3", "City 4", "City 5", "City 6"};
         String[] state = new String[]{"State 1", "State 2", "State 3", "State 4", "State 5", "State 6"};
 
-        if (customerService.getAllCustomers().isEmpty()){
+        if (customerService.getCountOfCustomers()==0){
             int length = firstNameArray.length;
             for (int i = 0; i < 20; i++) {
                 Customer customer = new Customer();
