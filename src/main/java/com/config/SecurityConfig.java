@@ -13,6 +13,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 public class SecurityConfig {
+
     @Autowired
     private JwtAuthenticationEntryPoint entryPoint;
 
@@ -20,20 +21,21 @@ public class SecurityConfig {
     private JwtAuthenticationFilter filter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-        //Configuration
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // Configuration
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(
-                        auth -> auth.requestMatchers("/home/**").authenticated()
-                                .requestMatchers("/auth/login").permitAll()
-                                .anyRequest().authenticated()
-                ).exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-        ;
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/user/**").permitAll()
+                        .requestMatchers("/auth/login").permitAll()
+                        .requestMatchers("/home/**").authenticated()
+
+                        .anyRequest().authenticated()
+                )
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(entryPoint))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
 
         http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
-
 
         return http.build();
     }
