@@ -1,4 +1,4 @@
-package com.config;
+package com.controller;
 
 import com.model.JwtRequest;
 import com.model.JwtResponse;
