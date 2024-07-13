@@ -122,15 +122,20 @@
 
     <div class="customer-list-container">
         <div class="options-row">
-            <button class="add-customer-button">Add Customer</button>
-            <select class="search-dropdown">
-                <option value="first_name">First Name</option>
-                <option value="last_name">Last Name</option>
-                <option value="city">City</option>
-                <option value="state">State</option>
-            </select>
-            <input type="text" class="search-input" placeholder="Search...">
-            <button class="sync-button">Sync</button>
+            <form>
+                <input class="add-customer-button" formaction="/user/add-customer" formmethod="get" type="submit" value="Add Customer">
+
+                <select class="search-dropdown">
+                    <option value="first_name">First Name</option>
+                    <option value="last_name">Last Name</option>
+                    <option value="city">City</option>
+                    <option value="state">State</option>
+                </select>
+
+                <input type="text" class="search-input" placeholder="Search...">
+
+                <input class="sync-button" value="Sync" formmethod="post" formaction="https://qa.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=get_customer_list" type="submit">
+            </form>
         </div>
 
         <table class="customer-table">
@@ -148,29 +153,16 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>Elvnu Street</td>
-                    <td>H no 2</td>
-                    <td>Delhi</td>
-                    <td>Delhi</td>
-                    <td>jane.doe@example.com</td>
-                    <td>12345678</td>
-                    <td>
-                        <button class="edit-button">Edit</button>
-                        <button class="delete-button">Delete</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>John</td>
-                    <td>Smith</td>
-                    <td>Main Street</td>
-                    <td>H no 5</td>
-                    <td>Mumbai</td>
-                    <td>Maharashtra</td>
-                    <td>john.smith@example.com</td>
-                    <td>87654321</td>
+                <tr th:each="coustomer : ${allCustomers}">
+                    <td th:text="${coustomer.first_name}"></td>
+                    <td th:text="${coustomer.last_name}"></td>
+                    <td th:text="${coustomer.street}"></td>
+                    <td th:text="${coustomer.address}"></td>
+                    <td th:text="${coustomer.city}"></td>
+                    <td th:text="${coustomer.state}"></td>
+                    <td th:text="${coustomer.email}"></td>
+                    <td th:text="${coustomer.phone}"></td>
+
                     <td>
                         <button class="edit-button">Edit</button>
                         <button class="delete-button">Delete</button>
