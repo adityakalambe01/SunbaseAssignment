@@ -29,5 +29,5 @@ public class Customer {
 
     private String email;
 
-    private Long phone;
+    private String phone;
 }
