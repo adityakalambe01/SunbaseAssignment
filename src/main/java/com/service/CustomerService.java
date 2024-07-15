@@ -87,7 +87,9 @@ public class CustomerService {
         return customerRepository.count();
     }
 
-    public void callExternalApi(String apiUrl, String bearerToken){
+    public void callExternalApi(){
+        String apiUrl = "https://qa.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=get_customer_list";
+        String bearerToken = "dGVzdEBzdW5iYXNlZGF0YS5jb206VGVzdEAxMjM=";
         StringBuilder response = new StringBuilder();
         List<Customer> customerList = null;
 
@@ -115,7 +117,10 @@ public class CustomerService {
             System.out.println(customer);
         }*/
 
-        customerRepository.saveAll(customerList);
+        if (customerList != null) {
+            for (Customer customer : customerList)
+                customerRepository.save(customer);
+        }
 
     }
 }
