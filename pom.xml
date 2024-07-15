@@ -132,7 +132,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>spring-boot-docker-maven</finalName>
     </build>
 
 </project>
