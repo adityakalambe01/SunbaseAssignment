@@ -123,15 +123,17 @@
 
 
     <div class="customer-list-container">
+        <center><h3 style="margin-bottom: 20px">Customer List</h3></center>
         <div class="options-row">
             <form>
                 <input class="add-customer-button" formaction="/user/create-customer" formmethod="get" type="submit" value="Add Customer">
 
                 <select class="search-dropdown">
                     <option value="first_name">First Name</option>
-                    <option value="last_name">Last Name</option>
                     <option value="city">City</option>
-                    <option value="state">State</option>
+                    <option value="email">Email</option>
+
+                    <option value="phone">Phone</option>
                 </select>
 
                 <input type="text" class="search-input" placeholder="Search...">
