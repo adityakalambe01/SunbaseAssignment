@@ -77,25 +77,27 @@
 
 <body>
 
-    <div class="customer-form">
-        <h3>Add Customer Details</h3>
-        <div class="form-row">
-            <div class="column">
-                <input type="text" placeholder="First Name" class="input-field">
-                <input type="text" placeholder="Street" class="input-field">
-                <input type="text" placeholder="City" class="input-field">
-                <input type="email" placeholder="Email" class="input-field">
+    <form th:action="${SubmitButton}" method="post">
+        <div class="customer-form">
+            <h3 th:text="${FormMessage}"></h3>
+            <div class="form-row">
+                <div class="column">
+                    <input type="text" placeholder="First Name" name="first_name" class="input-field" th:value="${customer.first_name}">
+                    <input type="text" placeholder="Street" name="street" class="input-field" th:value="${customer.street}">
+                    <input type="text" placeholder="City" name="city" class="input-field" th:value="${customer.city}">
+                    <input type="email" placeholder="Email" name="email" class="input-field" th:value="${customer.email}">
+                </div>
+                <div class="column">
+                    <input type="text" placeholder="Last Name" name="last_name" class="input-field" th:value="${customer.last_name}">
+                    <input type="text" placeholder="Address" name="address" class="input-field" th:value="${customer.address}">
+                    <input type="text" placeholder="State" name="state" class="input-field" th:value="${customer.state}">
+                    <input type="tel" placeholder="Phone Number" name="phone" class="input-field" th:value="${customer.phone}">
+                </div>
             </div>
-            <div class="column">
-                <input type="text" placeholder="Last Name" class="input-field">
-                <input type="text" placeholder="Address" class="input-field">
-                <input type="text" placeholder="State" class="input-field">
-                <input type="tel" placeholder="Phone Number" class="input-field">
-            </div>
+            <input type="hidden" name="uuid" th:value="${customer.uuid}">
+            <input class="submit-button" type="submit" th:value="${SubmitButtonText}">
         </div>
-        <button class="submit-button">Submit</button>
-    </div>
-
+    </form>
 </body>
 
 </html>
