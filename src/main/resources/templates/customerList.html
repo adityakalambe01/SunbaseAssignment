@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer List</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -120,10 +121,11 @@
 
 <body>
 
+
     <div class="customer-list-container">
         <div class="options-row">
             <form>
-                <input class="add-customer-button" formaction="/user/add-customer" formmethod="get" type="submit" value="Add Customer">
+                <input class="add-customer-button" formaction="/user/create-customer" formmethod="get" type="submit" value="Add Customer">
 
                 <select class="search-dropdown">
                     <option value="first_name">First Name</option>
@@ -134,12 +136,13 @@
 
                 <input type="text" class="search-input" placeholder="Search...">
 
-                <input class="sync-button" value="Sync" formmethod="post" formaction="https://qa.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=get_customer_list" type="submit">
+                <input class="sync-button" value="Sync" formmethod="get" formaction="/user/sync" type="submit">
             </form>
         </div>
 
-        <table class="customer-table">
-            <thead>
+        <section th:if="${value}">
+            <table class="customer-table">
+                <thead>
                 <tr>
                     <th>First Name</th>
                     <th>Last Name</th>
@@ -151,26 +154,57 @@
                     <th>Phone</th>
                     <th>Actions</th>
                 </tr>
-            </thead>
-            <tbody>
-                <tr th:each="coustomer : ${allCustomers}">
-                    <td th:text="${coustomer.first_name}"></td>
-                    <td th:text="${coustomer.last_name}"></td>
-                    <td th:text="${coustomer.street}"></td>
-                    <td th:text="${coustomer.address}"></td>
-                    <td th:text="${coustomer.city}"></td>
-                    <td th:text="${coustomer.state}"></td>
-                    <td th:text="${coustomer.email}"></td>
-                    <td th:text="${coustomer.phone}"></td>
+                </thead>
+                <tbody>
+                <tr th:each="customer : ${allCustomers}">
+                    <td th:text="${customer.first_name}"></td>
+                    <td th:text="${customer.last_name}"></td>
+                    <td th:text="${customer.street}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.city}"></td>
+                    <td th:text="${customer.state}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.phone}"></td>
 
                     <td>
-                        <button class="edit-button">Edit</button>
-                        <button class="delete-button">Delete</button>
+                        <form>
+                            <input type="hidden" name="uuid" th:value="${customer.uuid}">
+
+                            <button class="edit-button" formaction="/user/edit-customer" type="submit" formmethod="get">
+                                <i class="fas fa-edit"></i>
+                            </button>
+
+                            <button class="delete-button" formaction="/user/delete-customer" formmethod="post" type="submit">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                        </form>
+
                     </td>
                 </tr>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+
+
+            <center style="margin-top: 30px">
+
+                <ul th:each="number: ${totalRecords}" style="display: inline-block;">
+                    <td><a th:text="${number+1}" th:href="${pageNumberUrl+number}" style="text-decoration: none; color: white; padding: 4px; font-size: 18px; background-color: #007bff"></a></td>
+                </ul>
+
+            </center>
+
+        </section>
+        <section th:if="${!value}">
+            <center><h3>Records not found
+                    <br>
+                Please click on add customer or sync</h3></center>
+        </section>
+
+
+
     </div>
+
 
 </body>
 
