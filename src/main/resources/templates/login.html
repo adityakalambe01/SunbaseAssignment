@@ -67,12 +67,14 @@
 
 <body>
 
+<form action="/auth/login" method="post">
     <div class="login-page">
         <h3>Login Page</h3>
-        <input type="text" placeholder="Login Id" class="input-field">
-        <input type="password" placeholder="Password" class="input-field">
-        <button>Submit</button>
+        <input type="text" name="emailId" placeholder="Login Id" class="input-field">
+        <input type="password" name="password" placeholder="Password" class="input-field">
+        <button type="submit">Submit</button>
     </div>
+</form>
 </body>
 
 </html>
