@@ -29,8 +29,8 @@ public class CustomerController {
         return principal.getName();
     }
 
-    @GetMapping("/{id}")
-    public Customer getCustomerById(@RequestParam("id") String customerId) {
+    @GetMapping("/{uuid}")
+    public Customer getCustomerById(@RequestParam("uuid") String customerId) {
         return customerService.getCustomerById(customerId);
     }
 
@@ -52,10 +52,12 @@ public class CustomerController {
 
     @PostMapping("/customer-sync")
     public void syncCustomers() {
-        final String apiUrl = "https://qa.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=get_customer_list";
-        String bearerToken = "dGVzdEBzdW5iYXNlZGF0YS5jb206VGVzdEAxMjM=";
+//        String apiUrl = "https://qa.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=get_customer_list";
+//        String bearerToken = "dGVzdEBzdW5iYXNlZGF0YS5jb206VGVzdEAxMjM=";
 
-        customerService.callExternalApi(apiUrl, bearerToken);
+//        customerService.callExternalApi(apiUrl, bearerToken);
+
+        customerService.callExternalApi();
     }
 
     @PostMapping("addDefault")
@@ -88,5 +90,9 @@ public class CustomerController {
                 customerService.addNewCustomer(customer);
             }
         }
+    }
+
+    public Long getCountOfCustomers(){
+        return customerService.getCountOfCustomers();
     }
 }
